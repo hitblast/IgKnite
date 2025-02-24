@@ -164,17 +164,17 @@ class YTDLSource(disnake.PCMVolumeTransformer):
         hours, minutes = divmod(minutes, 60)
         days, hours = divmod(hours, 24)
 
-        duration = []
+        durations = []
         if days > 0:
-            duration.append(f"{days}d")
+            durations.append(f"{days}d")
         if hours > 0:
-            duration.append(f"{hours}h")
+            durations.append(f"{hours}h")
         if minutes > 0:
-            duration.append(f"{minutes}m")
+            durations.append(f"{minutes}m")
         if seconds > 0:
-            duration.append(f"{seconds}s")
+            durations.append(f"{seconds}s")
 
-        return " ".join(duration)
+        return " ".join(durations)
 
 
 # YTDLSource class with equalized playback.

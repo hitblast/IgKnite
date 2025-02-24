@@ -23,7 +23,7 @@ class IgKnite(commands.AutoShardedBot):
             command_prefix=commands.when_mentioned_or("."),
             strip_after_prefix=True,
             case_insensitive=True,
-            # owner_ids={}, # provide this if you dont want a api call to fetch the owner
+            owner_ids={keychain.discord_owner_id},
             *args,
             **kwargs,
         )
@@ -52,7 +52,7 @@ class IgKnite(commands.AutoShardedBot):
         )
 
     async def on_connect(self) -> None:
-        print(f"\nConnected to Discord as {self.user}.")
+        print(f"\nConnected to Discord as: {self.user}")
 
     async def on_ready(self) -> None:
         print(

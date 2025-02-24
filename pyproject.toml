@@ -4,4 +4,10 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "async-timeout>=5.0.1",
+    "disnake[speed,voice]>=2.10.1",
+    "python-decouple>=3.8",
+    "spotipy>=2.25.0",
+    "yt-dlp>=2025.2.19",
+]
