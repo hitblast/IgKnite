@@ -1,7 +1,8 @@
 # Imports.
 import click
 
-from .core import IgKnite
+from igknite.core import IgKnite
+from igknite.core.chain import keychain
 
 
 @click.group()
@@ -13,7 +14,7 @@ def cli() -> None:
 @cli.command()
 def run() -> None:
     bot_instance = IgKnite()
-    bot_instance.run()
+    bot_instance.run(keychain.discord_token)
 
 
 if __name__ == '__main__':
