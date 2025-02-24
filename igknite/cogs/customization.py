@@ -230,7 +230,9 @@ class Customization(commands.Cog):
         category: disnake.CategoryChannel = Param(
             description='Specify the category to put the channel into. Defaults to none.',
             default=None,
-            channel_types=[ChannelType.category],
+            channel_types=[
+                ChannelType.category,
+            ],
         ),
         topic: str = Param(
             description='Give a topic for the new channel.', default=None
@@ -262,7 +264,9 @@ class Customization(commands.Cog):
         category: disnake.CategoryChannel = Param(
             description='Specify the category to put the channel into. Defaults to none.',
             default=None,
-            channel_types=[ChannelType.category],
+            channel_types=[
+                ChannelType.category,
+            ],
         ),
         slowmode: int = Param(
             description='The amount of seconds to set the slowmode to. Default is 0.',
@@ -291,7 +295,9 @@ class Customization(commands.Cog):
         category: disnake.CategoryChannel = Param(
             description='Specify the category to put the channel into. Defaults to none.',
             default=None,
-            channel_types=[ChannelType.category],
+            channel_types=[
+                ChannelType.category,
+            ],
         ),
         slowmode: int = Param(
             description='The amount of seconds to set the slowmode to. Default is 0.',
