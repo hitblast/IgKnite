@@ -1,7 +1,7 @@
 [project]
 name = "igknite"
 version = "2025.2.24"
-description = "Unified, swiss-grade moderation & music bot for Discord."
+description = "Unified, swiss-grade moderation & music bot for Discord"
 readme = "README.md"
 requires-python = ">=3.13"
 packages = [ { include = "igknite" } ]
