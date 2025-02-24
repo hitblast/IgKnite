@@ -1,13 +1,14 @@
 # Imports.
 from typing import List
 
-import core
 import disnake
-from core.chain import keychain
-from core.datacls import LockRoles
 from disnake import OptionChoice
 from disnake.ext import commands
 from disnake.ext.commands import Param
+
+import igknite.core as core
+from igknite.core.chain import keychain
+from igknite.core.datacls import LockRoles
 
 
 # The actual cog.

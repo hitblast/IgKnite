@@ -6,18 +6,19 @@ import math
 import random
 from typing import Any, Callable, Self, Tuple
 
-import core
 import disnake
 import spotipy
 import yt_dlp
 from async_timeout import timeout
-from core.chain import keychain
-from core.datacls import LockRoles
 from disnake import ChannelType
 from disnake.ext import commands
 from disnake.ext.commands import Param
 from disnake.utils import MISSING
 from spotipy.oauth2 import SpotifyClientCredentials
+
+import igknite.core as core
+from igknite.core.chain import keychain
+from igknite.core.datacls import LockRoles
 
 # Suppress noise about console usage from errors.
 yt_dlp.utils.bug_reports_message = lambda: ''

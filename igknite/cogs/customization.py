@@ -6,8 +6,8 @@ from disnake import ChannelType, OptionChoice
 from disnake.ext import commands
 from disnake.ext.commands import Param
 
-import core
-from core.datacls import LockRoles
+import igknite.core as core
+from igknite.core.datacls import LockRoles
 
 
 # Hex to RGB converter.

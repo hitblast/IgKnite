@@ -2,10 +2,11 @@
 import time
 from datetime import datetime
 
-import core
 import disnake
 from disnake.ext import commands
 from disnake.ext.commands import Param
+
+import igknite.core as core
 
 
 # Common backend for ping-labelled commands.

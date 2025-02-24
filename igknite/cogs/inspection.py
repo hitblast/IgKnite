@@ -8,8 +8,8 @@ from disnake.ext import commands
 from disnake.ext.commands import Param
 from disnake.utils import MISSING
 
-import core
-from core.datacls import LockRoles
+import igknite.core as core
+from igknite.core.datacls import LockRoles
 
 
 # View for the `invites` command.

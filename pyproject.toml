@@ -4,16 +4,26 @@ version = "2025.2.24"
 description = "Unified, swiss-grade moderation & music bot for Discord."
 readme = "README.md"
 requires-python = ">=3.13"
+packages = [ { include = "igknite" } ]
 dependencies = [
     "async-timeout>=5.0.1",
+    "click>=8.1.8",
     "disnake[speed,voice]>=2.10.1",
     "python-decouple>=3.8",
     "spotipy>=2.25.0",
     "yt-dlp>=2025.2.19",
 ]
 
+[project.scripts]
+igknite = "igknite.main:cli"
+
 [tool.ruff]
 target-version = "py313"
+exclude = [".venv"]
 
 [tool.ruff.format]
 quote-style = "single"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

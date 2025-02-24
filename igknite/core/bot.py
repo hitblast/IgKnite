@@ -5,8 +5,8 @@ from typing import Optional, Set
 import disnake
 from disnake.ext import commands
 
-from cogs import EXTENTIONS
-from core.chain import keychain
+from igknite.cogs import EXTENTIONS
+from igknite.core.chain import keychain
 
 
 # Set up a custom class for core functionality.

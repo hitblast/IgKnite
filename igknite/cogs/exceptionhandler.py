@@ -5,7 +5,7 @@ import disnake
 from disnake import errors
 from disnake.ext import commands
 
-import core
+import igknite.core as core
 
 
 # The actual cog.

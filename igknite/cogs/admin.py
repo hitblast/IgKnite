@@ -2,7 +2,7 @@
 from disnake.ext import commands
 from disnake.ext.commands import errors
 
-import core
+import igknite.core as core
 
 
 class Admin(commands.Cog):
