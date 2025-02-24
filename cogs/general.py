@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-
-
 # Imports.
 import time
 from datetime import datetime
@@ -23,23 +20,19 @@ async def _ping_backend(inter: disnake.CommandInter) -> core.TypicalEmbed:
 
     api_latency = round((end_time - start_time) * 1000)
 
-    uptime = (
-        round(datetime.timestamp(datetime.now())) - core.BotData.running_since
-    )
+    uptime = round(datetime.timestamp(datetime.now())) - core.BotData.running_since
     h, m, s = uptime // 3600, uptime % 3600 // 60, uptime % 3600 % 60
 
     embed = (
         core.TypicalEmbed(inter=inter, disabled_footer=True)
         .add_field(
-            name='System Latency',
-            value=f'{system_latency}ms [{inter.bot.shard_count} shard(s)]',
+            name="System Latency",
+            value=f"{system_latency}ms [{inter.bot.shard_count} shard(s)]",
             inline=False,
         )
-        .add_field(name='API Latency', value=f'{api_latency}ms', inline=False)
-        .add_field(name='Uptime', value=f'{h}h {m}m {s}s')
-        .add_field(
-            name='Patch Version', value=core.BotData.version, inline=False
-        )
+        .add_field(name="API Latency", value=f"{api_latency}ms", inline=False)
+        .add_field(name="Uptime", value=f"{h}h {m}m {s}s")
+        .add_field(name="Patch Version", value=core.BotData.version, inline=False)
     )
 
     return embed
@@ -47,16 +40,12 @@ async def _ping_backend(inter: disnake.CommandInter) -> core.TypicalEmbed:
 
 # View for the `ping` command.
 class PingCommandView(disnake.ui.View):
-    def __init__(
-        self, inter: disnake.CommandInter, *, timeout: float = 60
-    ) -> None:
+    def __init__(self, inter: disnake.CommandInter, *, timeout: float = 60) -> None:
         super().__init__(timeout=timeout)
         self.inter = inter
 
-    @disnake.ui.button(label='Refresh', style=disnake.ButtonStyle.gray)
-    async def _refresh(
-        self, _: disnake.ui.Button, inter: disnake.Interaction
-    ) -> None:
+    @disnake.ui.button(label="Refresh", style=disnake.ButtonStyle.gray)
+    async def _refresh(self, _: disnake.ui.Button, inter: disnake.Interaction) -> None:
         embed = await _ping_backend(inter)
         await inter.edit_original_message(embed=embed, view=self)
 
@@ -77,7 +66,7 @@ class General(commands.Cog):
     async def on_raw_reaction_add(
         self, payload: disnake.RawReactionActionEvent
     ) -> None:
-        if payload.emoji.name == '🔖' and payload.event_type == 'REACTION_ADD':
+        if payload.emoji.name == "🔖" and payload.event_type == "REACTION_ADD":
             chnl = self.bot.get_channel(payload.channel_id)
             msg = disnake.utils.get(
                 await chnl.history(limit=5).flatten(), id=payload.message_id
@@ -85,11 +74,11 @@ class General(commands.Cog):
             embed = core.TypicalEmbed(
                 title="You've bookmarked a message.",
                 description=msg.content
-                + f'\n\nSent by {msg.author.name} '
-                + f'on {payload.member.guild.name}',
+                + f"\n\nSent by {msg.author.name} "
+                + f"on {payload.member.guild.name}",
             )
             view = core.SmallView().add_button(
-                label='Original Message', url=msg.jump_url
+                label="Original Message", url=msg.jump_url
             )
             await payload.member.send(embed=embed, view=view)
 
@@ -98,60 +87,58 @@ class General(commands.Cog):
     async def _avatar_backend(
         self, inter: disnake.CommandInter, member: disnake.Member = None
     ) -> None:
-        embed = core.TypicalEmbed(
-            inter=inter, title="Here's what I found!"
-        ).set_image(url=member.avatar)
+        embed = core.TypicalEmbed(inter=inter, title="Here's what I found!").set_image(
+            url=member.avatar
+        )
 
         await inter.send(embed=embed)
 
     # avatar (slash)
     @commands.slash_command(
-        name='avatar',
-        description='Displays the avatar of a server member.',
+        name="avatar",
+        description="Displays the avatar of a server member.",
         dm_permission=False,
     )
     async def _avatar(
         self,
         inter: disnake.CommandInter,
         member: disnake.Member = Param(
-            description='Mention the server member. Defaults to you.',
+            description="Mention the server member. Defaults to you.",
             default=lambda inter: inter.author,
         ),
     ) -> None:
         await self._avatar_backend(inter, member)
 
     # avatar (user)
-    @commands.user_command(name='Show Avatar', dm_permission=False)
+    @commands.user_command(name="Show Avatar", dm_permission=False)
     async def _avatar_user(
         self, inter: disnake.CommandInter, member: disnake.Member
     ) -> None:
         await self._avatar_backend(inter, member)
 
     # ping
-    @commands.slash_command(
-        name='ping', description='Shows my current response time.'
-    )
+    @commands.slash_command(name="ping", description="Shows my current response time.")
     async def _ping(self, inter: disnake.CommandInter) -> None:
         embed = await _ping_backend(inter)
         await inter.send(embed=embed, view=PingCommandView(inter))
 
     # help
-    @commands.slash_command(name='help', description='Get to know IgKnite!')
+    @commands.slash_command(name="help", description="Get to know IgKnite!")
     async def help(self, inter: disnake.CommandInter):
         embed = core.TypicalEmbed(
             inter=inter,
             title="Hey there! I'm IgKnite.",
             description="I'm a bot with no text commands (you heard that right) "
             + "and I'm here to help you manage and moderate your Discord server alongside "
-            + 'having a midnight music party with your friends in a random voice channel. '
-            + 'Looking forward to being friends with you!',
+            + "having a midnight music party with your friends in a random voice channel. "
+            + "Looking forward to being friends with you!",
             disabled_footer=True,
         )
 
         view = (
             core.SmallView(inter)
-            .add_button(label='GitHub', url=core.BotData.repo)
-            .add_button(label='Documentation', url=core.BotData.documentation)
+            .add_button(label="GitHub", url=core.BotData.repo)
+            .add_button(label="Documentation", url=core.BotData.documentation)
         )
 
         await inter.send(embed=embed, view=view)

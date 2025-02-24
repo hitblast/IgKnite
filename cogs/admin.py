@@ -1,9 +1,4 @@
-# SPDX-License-Identifier: MIT
-
-
 # Imports.
-
-
 from disnake.ext import commands
 from disnake.ext.commands import errors
 
@@ -26,8 +21,6 @@ class Admin(commands.Cog):
                 msg = f'Failed to load `{name}` extension.'
             elif isinstance(e, errors.NoEntryPointError):
                 msg = f'Setup function is not defined in `{name}` file.'
-            # getting here shouldnt happen, just making sure msg
-            # doesnt have an Unbound type.
             else:
                 msg = f'Something went wrong while loading `{name}` extension.'
 

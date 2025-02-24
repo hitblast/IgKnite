@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-
-
 # Imports.
 from typing import Any
 
@@ -19,20 +16,18 @@ class ExceptionHandler(commands.Cog):
     def get_view(self, inter: disnake.CommandInter) -> core.SmallView:
         view = core.SmallView(inter).add_button(
             label="Think it's a bug?",
-            url=core.BotData.repo + '/issues/new?template=bug.yml',
+            url=core.BotData.repo + "/issues/new?template=bug.yml",
             style=disnake.ButtonStyle.red,
         )
         return view
 
-    async def process_error(
-        self, inter: disnake.CommandInter, error: Any
-    ) -> None:
+    async def process_error(self, inter: disnake.CommandInter, error: Any) -> None:
         """
         A method for processing the exceptions caused in interaction commands and responding
         accordingly.
         """
 
-        error = getattr(error, 'original', error)
+        error = getattr(error, "original", error)
         embed = core.TypicalEmbed(inter=inter, is_error=True)
 
         # MissingPermissions
@@ -49,7 +44,7 @@ class ExceptionHandler(commands.Cog):
 
         # Anything else...
         else:
-            embed.title = 'Oops! An alien error occured.'
+            embed.title = "Oops! An alien error occured."
 
         embed.description = str(error)
         await inter.send(embed=embed, view=self.get_view(inter), ephemeral=True)

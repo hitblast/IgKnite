@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-
-
 # Imports.
 from dataclasses import dataclass
 
@@ -12,5 +9,5 @@ class LockRoles:
     A dataclass used for role-locking.
     """
 
-    mod: str = 'BotMod'
-    admin: str = 'BotAdmin'
+    mod: str = "BotMod"
+    admin: str = "BotAdmin"

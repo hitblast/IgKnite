@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-
-
 # Imports.
 import asyncio
 from typing import Optional, Set
@@ -23,7 +20,7 @@ class IgKnite(commands.AutoShardedBot):
         self, *args, ignored_extensions: Optional[Set[str]] = None, **kwargs
     ) -> None:
         super().__init__(
-            command_prefix=commands.when_mentioned_or('.'),
+            command_prefix=commands.when_mentioned_or("."),
             strip_after_prefix=True,
             case_insensitive=True,
             # owner_ids={}, # provide this if you dont want a api call to fetch the owner
@@ -50,16 +47,16 @@ class IgKnite(commands.AutoShardedBot):
             status=disnake.Status.dnd,
             activity=disnake.Activity(
                 type=disnake.ActivityType.listening,
-                name=f'slashes inside {len(self.guilds)} server(s)!',
+                name=f"slashes inside {len(self.guilds)} server(s)!",
             ),
         )
 
     async def on_connect(self) -> None:
-        print(f'\nConnected to Discord as {self.user}.')
+        print(f"\nConnected to Discord as {self.user}.")
 
     async def on_ready(self) -> None:
         print(
-            f'Inside {len(self.guilds)} server(s) with {self.shard_count} shard(s) active.'
+            f"Inside {len(self.guilds)} server(s) with {self.shard_count} shard(s) active."
         )
         await self._update_presence()
 

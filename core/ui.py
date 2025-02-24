@@ -1,6 +1,3 @@
-# SPDX-License-Identifier: MIT
-
-
 # Imports.
 import random
 from typing import Self
@@ -32,14 +29,14 @@ class TypicalEmbed(disnake.Embed):
             self.set_footer(
                 text=random.choice(
                     [
-                        'When pigs fly...',
-                        'Stunned stork!',
+                        "When pigs fly...",
+                        "Stunned stork!",
                         "A perfect debugged life doesn't exist.",
                         "Haven't I made it obvious?",
-                        'Hello World, from the other side!',
-                        'A computer is like air conditioning'
-                        + '- it becomes useless when you open Windows.',
-                        'Life is like a sine wave.',
+                        "Hello World, from the other side!",
+                        "A computer is like air conditioning"
+                        + "- it becomes useless when you open Windows.",
+                        "Life is like a sine wave.",
                     ]
                 ),
                 icon_url=inter.author.avatar,
@@ -71,9 +68,7 @@ class SmallView(disnake.ui.View):
         """
 
         self.add_item(
-            disnake.ui.Button(
-                label=label, url=url, style=style, disabled=disabled
-            )
+            disnake.ui.Button(label=label, url=url, style=style, disabled=disabled)
         )
         return self
 
