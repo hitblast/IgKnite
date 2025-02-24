@@ -135,10 +135,9 @@ class General(commands.Cog):
             disabled_footer=True,
         )
 
-        view = (
-            core.SmallView(inter)
-            .add_button(label='GitHub', url=core.BotData.repo)
-            .add_button(label='Documentation', url=core.BotData.documentation)
+        view = core.SmallView(inter).add_button(
+            label='GitHub',
+            url=core.BotData.repo,
         )
 
         await inter.send(embed=embed, view=view)

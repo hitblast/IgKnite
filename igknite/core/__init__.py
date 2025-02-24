@@ -8,7 +8,7 @@ from .bot import *  # noqa: F403
 from .ui import *  # noqa: F403
 
 # Set version number.
-__version_info__ = ('2024', '8', '24')  # Year.Month.Day
+__version_info__ = ('2025', '2', '24')  # Year.Month.Day
 __version__ = '.'.join(__version_info__)
 
 
@@ -19,7 +19,6 @@ class BotData:
     A dataclass used for storing bot metadata.
     """
 
-    repo: str = 'https://github.com/IgKniteDev/IgKnite'
-    documentation: str = 'https://igknitedev.github.io/docs'
+    repo: str = 'https://github.com/hitblast/IgKnite'
     version: str = __version__
     running_since: int = round(datetime.timestamp(datetime.now()))
