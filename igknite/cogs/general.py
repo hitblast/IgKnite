@@ -97,7 +97,7 @@ class General(commands.Cog):
     @commands.slash_command(
         name='avatar',
         description='Displays the avatar of a server member.',
-        dm_permission=False,
+        contexts=disnake.InteractionContextTypes.guild,
     )
     async def _avatar(
         self,
@@ -110,7 +110,9 @@ class General(commands.Cog):
         await self._avatar_backend(inter, member)
 
     # avatar (user)
-    @commands.user_command(name='Show Avatar', dm_permission=False)
+    @commands.user_command(
+        name='Show Avatar', contexts=disnake.InteractionContextTypes.guild
+    )
     async def _avatar_user(
         self, inter: disnake.CommandInter, member: disnake.Member
     ) -> None:
