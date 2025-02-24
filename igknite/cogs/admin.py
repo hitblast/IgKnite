@@ -6,7 +6,7 @@ import core
 
 
 class Admin(commands.Cog):
-    @commands.command(name="reloadext")
+    @commands.command(name='reloadext')
     async def reload_extension(
         self, ctx: commands.Context[core.IgKnite], name: str
     ) -> None:
@@ -14,21 +14,21 @@ class Admin(commands.Cog):
             ctx.bot.reload_extension(name)
         except Exception as e:
             if isinstance(e, errors.ExtensionNotLoaded):
-                msg = f"`{name}` extension is not loaded."
+                msg = f'`{name}` extension is not loaded.'
             elif isinstance(e, errors.ExtensionNotFound):
-                msg = f"No extension with name `{name}` exists."
+                msg = f'No extension with name `{name}` exists.'
             elif isinstance(e, errors.ExtensionFailed):
-                msg = f"Failed to load `{name}` extension."
+                msg = f'Failed to load `{name}` extension.'
             elif isinstance(e, errors.NoEntryPointError):
-                msg = f"Setup function is not defined in `{name}` file."
+                msg = f'Setup function is not defined in `{name}` file.'
             else:
-                msg = f"Something went wrong while loading `{name}` extension."
+                msg = f'Something went wrong while loading `{name}` extension.'
 
             embed = core.TypicalEmbed(description=msg, is_error=True)
             await ctx.send(embed=embed)
         else:
             embed = core.TypicalEmbed(
-                description=f"Successfully reloaded `{name}` extension."
+                description=f'Successfully reloaded `{name}` extension.'
             )
             await ctx.send(embed=embed)
 
@@ -38,7 +38,7 @@ class Admin(commands.Cog):
     ) -> None:
         if isinstance(error, errors.MissingRequiredArgument):
             embed = core.TypicalEmbed(
-                description="Please provide an extension name.", is_error=True
+                description='Please provide an extension name.', is_error=True
             )
             await ctx.send(embed=embed)
         # a check failure would be raised when someone who is not

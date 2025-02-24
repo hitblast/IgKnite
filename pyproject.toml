@@ -1,7 +1,7 @@
 [project]
 name = "igknite"
-version = "0.1.0"
-description = "Add your description here"
+version = "2025.2.24"
+description = "Unified, swiss-grade moderation & music bot for Discord."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -11,3 +11,9 @@ dependencies = [
     "spotipy>=2.25.0",
     "yt-dlp>=2025.2.19",
 ]
+
+[tool.ruff]
+target-version = "py313"
+
+[tool.ruff.format]
+quote-style = "single"

@@ -45,7 +45,7 @@ class InviteCommandView(disnake.ui.View):
             self.children[1].disabled = False
 
     @disnake.ui.button(
-        label="< Previous", style=disnake.ButtonStyle.gray, disabled=True
+        label='< Previous', style=disnake.ButtonStyle.gray, disabled=True
     )
     async def previous(
         self, _: disnake.ui.Button, inter: disnake.MessageInteraction
@@ -59,7 +59,7 @@ class InviteCommandView(disnake.ui.View):
             view=self,
         )
 
-    @disnake.ui.button(label="Next >", style=disnake.ButtonStyle.gray)
+    @disnake.ui.button(label='Next >', style=disnake.ButtonStyle.gray)
     async def next(
         self, _: disnake.ui.Button, inter: disnake.MessageInteraction
     ) -> None:
@@ -86,8 +86,8 @@ class Inspection(commands.Cog):
 
     # guildinfo
     @commands.slash_command(
-        name="guildinfo",
-        description="Shows all important information about the server.",
+        name='guildinfo',
+        description='Shows all important information about the server.',
         dm_permission=False,
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
@@ -95,19 +95,19 @@ class Inspection(commands.Cog):
         embed = (
             core.TypicalEmbed(inter=inter)
             .add_field(
-                name="Birth",
+                name='Birth',
                 value=datetime.strptime(
-                    str(inter.guild.created_at), "%Y-%m-%d %H:%M:%S.%f%z"
-                ).strftime("%b %d, %Y"),
+                    str(inter.guild.created_at), '%Y-%m-%d %H:%M:%S.%f%z'
+                ).strftime('%b %d, %Y'),
             )
-            .add_field(name="Owner", value=inter.guild.owner.mention)
-            .add_field(name="Members", value=inter.guild.member_count)
-            .add_field(name="Roles", value=len(inter.guild.roles))
+            .add_field(name='Owner', value=inter.guild.owner.mention)
+            .add_field(name='Members', value=inter.guild.member_count)
+            .add_field(name='Roles', value=len(inter.guild.roles))
             .add_field(
-                name="Channels",
+                name='Channels',
                 value=len(inter.guild.text_channels) + len(inter.guild.voice_channels),
             )
-            .add_field(name="Identifier", value=inter.guild_id)
+            .add_field(name='Identifier', value=inter.guild_id)
         )
 
         if inter.guild.icon:
@@ -123,28 +123,28 @@ class Inspection(commands.Cog):
         embed = (
             core.TypicalEmbed(
                 inter=inter,
-                title=f"{member.global_name} ({member.display_name})",
+                title=f'{member.global_name} ({member.display_name})',
             )
-            .add_field(name="Status", value=member.status)
+            .add_field(name='Status', value=member.status)
             .add_field(
-                name="Birth",
+                name='Birth',
                 value=datetime.strptime(
-                    str(member.created_at), "%Y-%m-%d %H:%M:%S.%f%z"
-                ).strftime("%b %d, %Y"),
+                    str(member.created_at), '%Y-%m-%d %H:%M:%S.%f%z'
+                ).strftime('%b %d, %Y'),
             )
-            .add_field(name="On Mobile", value=member.is_on_mobile())
-            .add_field(name="Race", value="Bot" if member.bot else "Human")
-            .add_field(name="Roles", value=len(member.roles))
-            .add_field(name="Position", value=member.top_role.mention)
-            .add_field(name="Identifier", value=member.id)
+            .add_field(name='On Mobile', value=member.is_on_mobile())
+            .add_field(name='Race', value='Bot' if member.bot else 'Human')
+            .add_field(name='Roles', value=len(member.roles))
+            .add_field(name='Position', value=member.top_role.mention)
+            .add_field(name='Identifier', value=member.id)
             .set_thumbnail(url=member.display_avatar)
         )
         await inter.send(embed=embed)
 
     # userinfo (slash)
     @commands.slash_command(
-        name="userinfo",
-        description="Shows all important information on a user.",
+        name='userinfo',
+        description='Shows all important information on a user.',
         dm_permission=False,
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
@@ -152,14 +152,14 @@ class Inspection(commands.Cog):
         self,
         inter: disnake.CommandInter,
         member: disnake.Member = Param(
-            description="Mention the server member. Defaults to you.",
+            description='Mention the server member. Defaults to you.',
             default=lambda inter: inter.author,
         ),
     ) -> None:
         await self._userinfo_backend(inter, member)
 
     # userinfo (user)
-    @commands.user_command(name="Show User Information", dm_permission=False)
+    @commands.user_command(name='Show User Information', dm_permission=False)
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _userinfo_user(
         self, inter: disnake.CommandInter, member: disnake.Member
@@ -167,7 +167,7 @@ class Inspection(commands.Cog):
         await self._userinfo_backend(inter, member)
 
     # userinfo (message)
-    @commands.message_command(name="Show Author Information", dm_permission=False)
+    @commands.message_command(name='Show Author Information', dm_permission=False)
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _userinfo_message(
         self, inter: disnake.CommandInter, message: disnake.Message
@@ -176,37 +176,37 @@ class Inspection(commands.Cog):
 
     # roleinfo
     @commands.slash_command(
-        name="roleinfo",
-        description="Shows all important information related to a specific role.",
+        name='roleinfo',
+        description='Shows all important information related to a specific role.',
         dm_permission=False,
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _roleinfo(
         self,
         inter: disnake.CommandInter,
-        role: disnake.Role = Param(description="Mention the role.", default=None),
+        role: disnake.Role = Param(description='Mention the role.', default=None),
     ) -> None:
         embed = (
-            core.TypicalEmbed(inter=inter, title=f"Role information: @{role.name}")
+            core.TypicalEmbed(inter=inter, title=f'Role information: @{role.name}')
             .add_field(
-                name="Birth",
+                name='Birth',
                 value=datetime.strptime(
-                    str(role.created_at), "%Y-%m-%d %H:%M:%S.%f%z"
-                ).strftime("%b %d, %Y"),
+                    str(role.created_at), '%Y-%m-%d %H:%M:%S.%f%z'
+                ).strftime('%b %d, %Y'),
             )
-            .add_field(name="Mentionable", value=role.mentionable)
-            .add_field(name="Managed By Integration", value=role.managed)
-            .add_field(name="Managed By Bot", value=role.is_bot_managed())
-            .add_field(name="Role Position", value=role.position)
-            .add_field(name="Identifier", value=f"`{role.id}`")
+            .add_field(name='Mentionable', value=role.mentionable)
+            .add_field(name='Managed By Integration', value=role.managed)
+            .add_field(name='Managed By Bot', value=role.is_bot_managed())
+            .add_field(name='Role Position', value=role.position)
+            .add_field(name='Identifier', value=f'`{role.id}`')
         )
 
         await inter.send(embed=embed)
 
     # invites
     @commands.slash_command(
-        name="invites",
-        description="Displays active server invites.",
+        name='invites',
+        description='Displays active server invites.',
         dm_permission=False,
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
@@ -217,7 +217,7 @@ class Inspection(commands.Cog):
         await inter.response.defer(ephemeral=True)
 
         if len(invites := await inter.guild.invites()) == 0:
-            return await inter.send("There are no invites to this server yet.")
+            return await inter.send('There are no invites to this server yet.')
 
         page = 1
         invites_per_page = 5
@@ -225,8 +225,8 @@ class Inspection(commands.Cog):
 
         async def page_loader(page_num: int) -> core.TypicalEmbed:
             page = page_num
-            embed = core.TypicalEmbed(inter=inter, title="Active Invites").set_footer(
-                text=f"{page}/{top_page}"
+            embed = core.TypicalEmbed(inter=inter, title='Active Invites').set_footer(
+                text=f'{page}/{top_page}'
             )
 
             for i in range(
@@ -235,18 +235,18 @@ class Inspection(commands.Cog):
             ):
                 if i < len(invites):
                     if not invites[i].max_age:
-                        max_age = "never"
+                        max_age = 'never'
                     else:
                         date_time = datetime.fromtimestamp(
                             mktime(invites[i].expires_at.timetuple())
                         )
-                        max_age = f"<t:{int(mktime(date_time.timetuple()))}:R>"
+                        max_age = f'<t:{int(mktime(date_time.timetuple()))}:R>'
 
                     embed.add_field(
-                        name=f"{i + 1} - `{invites[i].code}`",
-                        value=f"🧍{invites[i].inviter.name} "
-                        f" **|** 🚪 {invites[i].uses} "
-                        f" **|** 🕑 {max_age} \n\n",
+                        name=f'{i + 1} - `{invites[i].code}`',
+                        value=f'🧍{invites[i].inviter.name} '
+                        f' **|** 🚪 {invites[i].uses} '
+                        f' **|** 🕑 {max_age} \n\n',
                         inline=False,
                     )
 
@@ -267,9 +267,9 @@ class Inspection(commands.Cog):
 
     # revokeinvites
     @commands.slash_command(
-        name="revokeinvites",
-        description="Revokes invites. "
-        + "By default this removes all invites but you can choose a server member.",
+        name='revokeinvites',
+        description='Revokes invites. '
+        + 'By default this removes all invites but you can choose a server member.',
         dm_permission=False,
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
@@ -277,7 +277,7 @@ class Inspection(commands.Cog):
         self,
         inter: disnake.CommandInter,
         member: disnake.Member = Param(
-            description="Mention the server member. Defaults to all.",
+            description='Mention the server member. Defaults to all.',
             default=None,
         ),
     ) -> None:
@@ -293,15 +293,15 @@ class Inspection(commands.Cog):
 
         if member:
             await inter.send(
-                f"Revoked {deletion_count} invites made by {member.mention}."
+                f'Revoked {deletion_count} invites made by {member.mention}.'
             )
         else:
-            await inter.send(f"Revoked {deletion_count} invites.")
+            await inter.send(f'Revoked {deletion_count} invites.')
 
     # audit
     @commands.slash_command(
-        name="audit",
-        description="Views the latest entries of the audit log in detail.",
+        name='audit',
+        description='Views the latest entries of the audit log in detail.',
         dm_permission=False,
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
@@ -309,7 +309,7 @@ class Inspection(commands.Cog):
         self,
         inter: disnake.CommandInter,
         limit: int = Param(
-            description="The limit for showing audit log entries.",
+            description='The limit for showing audit log entries.',
             default=5,
             min_value=1,
             max_value=100,
@@ -317,11 +317,11 @@ class Inspection(commands.Cog):
     ):
         await inter.response.defer(ephemeral=True)
 
-        embed = core.TypicalEmbed(inter=inter, title=f"Audit Log ({limit} entries)")
+        embed = core.TypicalEmbed(inter=inter, title=f'Audit Log ({limit} entries)')
         async for audit_entry in inter.guild.audit_logs(limit=limit):
             embed.add_field(
-                name=f"- {audit_entry.action}",
-                value=f"User: {audit_entry.user} | Target: {audit_entry.target}",
+                name=f'- {audit_entry.action}',
+                value=f'User: {audit_entry.user} | Target: {audit_entry.target}',
                 inline=False,
             )
 

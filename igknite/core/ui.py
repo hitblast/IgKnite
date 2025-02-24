@@ -29,14 +29,14 @@ class TypicalEmbed(disnake.Embed):
             self.set_footer(
                 text=random.choice(
                     [
-                        "When pigs fly...",
-                        "Stunned stork!",
+                        'When pigs fly...',
+                        'Stunned stork!',
                         "A perfect debugged life doesn't exist.",
                         "Haven't I made it obvious?",
-                        "Hello World, from the other side!",
-                        "A computer is like air conditioning"
-                        + "- it becomes useless when you open Windows.",
-                        "Life is like a sine wave.",
+                        'Hello World, from the other side!',
+                        'A computer is like air conditioning'
+                        + '- it becomes useless when you open Windows.',
+                        'Life is like a sine wave.',
                     ]
                 ),
                 icon_url=inter.author.avatar,
