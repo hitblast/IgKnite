@@ -4,4 +4,4 @@
 Unified, swiss-grade moderation & music bot for Discord
 
 > [!IMPORTANT]
-> This project is going extensive legacy code migration. Please do not use this in production till the latest tag release occurs.
+> This project is going through extensive legacy code migration. Please do not use this in production till the latest tag release occurs.
