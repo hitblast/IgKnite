@@ -1062,6 +1062,7 @@ class Music(commands.Cog):
         if not await self._ensure_play_safety(inter):
             return
 
+        # TODO: Possible broken backend
         for activity in member.activities:
             if isinstance(activity, disnake.Spotify):
                 track = Spotify.get_track_features(activity.track_id)
