@@ -16,7 +16,10 @@ class IgKnite(commands.AutoShardedBot):
     """
 
     def __init__(
-        self, *args, ignored_extensions: set[str] | None = None, **kwargs
+        self,
+        *args,
+        ignored_extensions: set[str] | None = None,
+        **kwargs,
     ) -> None:
         super().__init__(
             command_prefix=commands.when_mentioned_or('.igkn.'),
