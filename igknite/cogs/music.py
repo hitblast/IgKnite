@@ -4,7 +4,7 @@ import functools
 import itertools
 import math
 import random
-from typing import Any, Callable, Self, Tuple
+from typing import Any, Callable, Self
 
 import disnake
 import spotipy
@@ -237,7 +237,7 @@ class Song:
 
     def create_embed(
         self, inter: disnake.CommandInter
-    ) -> Tuple[core.TypicalEmbed, disnake.ui.View]:
+    ) -> tuple[core.TypicalEmbed, disnake.ui.View]:
         duration = self.source.duration or 'Live'
 
         embed = (

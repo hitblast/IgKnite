@@ -1,6 +1,5 @@
 # Imports.
 import asyncio
-from typing import Optional, Set
 
 import disnake
 from disnake.ext import commands
@@ -17,7 +16,7 @@ class IgKnite(commands.AutoShardedBot):
     """
 
     def __init__(
-        self, *args, ignored_extensions: Optional[Set[str]] = None, **kwargs
+        self, *args, ignored_extensions: set[str] | None = None, **kwargs
     ) -> None:
         super().__init__(
             command_prefix=commands.when_mentioned_or('.igkn.'),

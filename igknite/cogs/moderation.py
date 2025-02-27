@@ -1,6 +1,4 @@
 # Imports.
-from typing import List
-
 import disnake
 from disnake import OptionChoice
 from disnake.ext import commands
@@ -286,7 +284,7 @@ class Moderation(commands.Cog):
         if not snipeables:
             return await inter.send('No messages were found in my list.')
 
-        webhooks: List[disnake.Webhook] = []
+        webhooks: list[disnake.Webhook] = []
 
         def find_hook(name: str) -> disnake.Webhook | None:
             for webhook in webhooks:

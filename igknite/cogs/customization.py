@@ -1,6 +1,4 @@
 # Imports.
-from typing import List
-
 import disnake
 from disnake import ChannelType, OptionChoice
 from disnake.ext import commands
@@ -22,7 +20,7 @@ def get_color(hex: str) -> disnake.Colour:
 
 # The actual cog.
 class Customization(commands.Cog):
-    __slowmode_choices__: List[OptionChoice] = [
+    __slowmode_choices__: list[OptionChoice] = [
         OptionChoice('Remove Slowmode', 0),
         OptionChoice('5s', 5),
         OptionChoice('10s', 10),

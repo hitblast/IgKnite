@@ -1,6 +1,5 @@
 # Imports.
 import logging
-from typing import List
 
 from decouple import config
 from disnake.message import Message
@@ -9,7 +8,7 @@ from disnake.message import Message
 # Custom class for handling environment secrets and global variables..
 class KeyChain:
     def __init__(self) -> None:
-        self.snipeables: List[Message] = []
+        self.snipeables: list[Message] = []
 
         try:
             self.discord_token = config('DISCORD_TOKEN', default=None, cast=str)
