@@ -10,8 +10,6 @@ Unified, swiss-grade moderation & music bot for Discord
 
 - [Key Features](#key-features)
 - [Setup](#setup)
-  - [Using Python](#using-python)
-  - [Using Docker](#using-docker)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -25,11 +23,32 @@ Unified, swiss-grade moderation & music bot for Discord
 
 ## Setup
 
+The primary setup requirements for this project are [uv](https://astral.sh/uv)
+and [ffmpeg](https://ffmpeg.org/). For prebuilt Docker images, please refer to
+the [packages](https://github.com/hitblast?tab=packages&repo_name=IgKnite)
+section.
+
+```bash
+# Clone the repository and set as current working directory.
+git clone git@github.com:hitblast/IgKnite.git && cd IgKnite
+
+# Install dependencies.
+uv sync
+```
+
+For running the bot, simply use the following command:
+
+```bash
+uv run igknite run
+# If the virtual environment is activated already:
+#       igknite run
+```
+
 ## Contributing
 
-Please follow the [CONTRIBUTING](./CONTRIBUTING.md) guidelines. For more
-information on setting up your development environment, refer to the
-[DEVELOPMENT](./dev-docs/DEVELOPMENT.md) guide.
+Pull requests are always welcome! Please follow the [Code of
+Conduct](./CODE_OF_CONDUCT.md) for ethical guidelines regarding code
+contributions.
 
 ## License
 

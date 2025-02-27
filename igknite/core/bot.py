@@ -20,7 +20,7 @@ class IgKnite(commands.AutoShardedBot):
         self, *args, ignored_extensions: Optional[Set[str]] = None, **kwargs
     ) -> None:
         super().__init__(
-            command_prefix=commands.when_mentioned_or(".igkn."),
+            command_prefix=commands.when_mentioned_or('.igkn.'),
             strip_after_prefix=True,
             case_insensitive=True,
             intents=disnake.Intents.all(),
