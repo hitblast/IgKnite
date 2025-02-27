@@ -20,10 +20,11 @@ class IgKnite(commands.AutoShardedBot):
         self, *args, ignored_extensions: Optional[Set[str]] = None, **kwargs
     ) -> None:
         super().__init__(
-            command_prefix=commands.when_mentioned_or('.'),
+            command_prefix=commands.when_mentioned_or(".igkn."),
             strip_after_prefix=True,
             case_insensitive=True,
-            owner_ids={keychain.discord_owner_id},
+            intents=disnake.Intents.all(),
+            owner_ids={keychain.discord_owner_id},  # retrieve from KeyChain instance
             *args,
             **kwargs,
         )
