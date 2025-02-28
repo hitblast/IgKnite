@@ -3,8 +3,8 @@
 # IgKnite
 Unified, swiss-grade moderation & music bot for Discord
 
-> [!IMPORTANT]
-> This project is going through extensive legacy code migration. Please do not use this in production till the latest tag release occurs.
+> [!WARNING]
+> Although suitable for production use, this project is still going through partial code migration, so keep that in mind before deploying.
 
 ## Table of Contents
 
@@ -36,7 +36,21 @@ git clone git@github.com:hitblast/IgKnite.git && cd IgKnite
 uv sync
 ```
 
-For running the bot, simply use the following command:
+Then, copy the required environment secrets into a new `.env` file like this:
+
+```bash
+# Copy .env.sample into .env using cp.
+cp .env.sample .env
+
+# Edit using your favorite code editor.
+nvim .env
+```
+
+Additionally, please note that alongside the traditionally required secrets for
+running the bot, IgKnite also requires a client ID and secret from the [Spotify Developer Portal](https://developer.spotify.com/)
+in order to search Spotify for URI inputs.
+
+Finally, to run the bot, execute:
 
 ```bash
 uv run igknite run

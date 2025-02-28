@@ -8,7 +8,7 @@ from .bot import *  # noqa: F403
 from .ui import *  # noqa: F403
 
 # Set version number.
-__version_info__ = ('2025', '2', '24')  # Year.Month.Day
+__version_info__ = ('2025', '2', '28')  # Year.Month.Day
 __version__ = '.'.join(__version_info__)
 
 
