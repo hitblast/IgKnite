@@ -23,6 +23,10 @@ class IgKnite(commands.AutoShardedBot):
     ) -> None:
         super().__init__(
             command_prefix=commands.when_mentioned_or('.igkn.'),
+            command_sync_flags=commands.CommandSyncFlags(
+                sync_commands=True,
+                allow_command_deletion=True,
+            ),
             strip_after_prefix=True,
             case_insensitive=True,
             intents=disnake.Intents.all(),
@@ -50,7 +54,7 @@ class IgKnite(commands.AutoShardedBot):
             status=disnake.Status.dnd,
             activity=disnake.Activity(
                 type=disnake.ActivityType.listening,
-                name=f'slashes inside {len(self.guilds)} server(s)!',
+                name=f'/play & more',
             ),
         )
 
@@ -59,7 +63,7 @@ class IgKnite(commands.AutoShardedBot):
 
     async def on_ready(self) -> None:
         print(
-            f'Inside {len(self.guilds)} server(s) with {self.shard_count} shard(s) active.'
+            f'Server count: {len(self.guilds)} | Shard count: {self.shard_count}'
         )
         await self._update_presence()
 

@@ -18,7 +18,7 @@ class Moderation(commands.Cog):
     @commands.slash_command(
         name='ban',
         description='Bans a member from the server.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _ban(
@@ -55,7 +55,7 @@ class Moderation(commands.Cog):
     @commands.slash_command(
         name='softban',
         description='Temporarily bans members to delete their messages.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _softban(
@@ -84,7 +84,7 @@ class Moderation(commands.Cog):
 
     # softban (user)
     @commands.user_command(
-        name='Wipe (Softban)', contexts=disnake.InteractionContextTypes.guild
+        name='Wipe (Softban)', contexts=disnake.InteractionContextTypes(guild=True)
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _softban_user(
@@ -96,7 +96,7 @@ class Moderation(commands.Cog):
     @commands.slash_command(
         name='kick',
         description='Kicks a member from the server.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _kick(
@@ -117,7 +117,7 @@ class Moderation(commands.Cog):
     @commands.slash_command(
         name='timeout',
         description='Timeouts a member.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _timeout(
@@ -143,7 +143,7 @@ class Moderation(commands.Cog):
     @commands.slash_command(
         name='unban',
         description='Unbans a member from the server.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _unban(
@@ -163,7 +163,7 @@ class Moderation(commands.Cog):
     @commands.slash_command(
         name='purge',
         description='Clears messages within the given index.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _purge(
@@ -218,7 +218,7 @@ class Moderation(commands.Cog):
     @commands.slash_command(
         name='ripplepurge',
         description='Clears messages that are sent by a specific user within the given index.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _ripplepurge(
@@ -235,7 +235,7 @@ class Moderation(commands.Cog):
 
     # ripplepurge (user)
     @commands.user_command(
-        name='Ripple Purge', contexts=disnake.InteractionContextTypes.guild
+        name='Ripple Purge', contexts=disnake.InteractionContextTypes(guild=True)
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _ripplepurge_user(
@@ -245,7 +245,7 @@ class Moderation(commands.Cog):
 
     # ripplepurge (message)
     @commands.message_command(
-        name='Ripple Purge', contexts=disnake.InteractionContextTypes.guild
+        name='Ripple Purge', contexts=disnake.InteractionContextTypes(guild=True)
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _ripplepurge_message(
@@ -257,7 +257,7 @@ class Moderation(commands.Cog):
     @commands.slash_command(
         name='snipe',
         description='Snipes messages within 25 seconds of their deletion.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _snipe(
@@ -326,7 +326,7 @@ class Moderation(commands.Cog):
     @commands.slash_command(
         name='senddm',
         description='Send DM to specific users.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def senddm(
@@ -353,7 +353,7 @@ class Moderation(commands.Cog):
     @commands.slash_command(
         name='pins',
         description='Shows all pinned messages in the current channel.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     async def _pins(self, inter: disnake.CommandInter) -> None:
         await inter.response.defer()
@@ -379,7 +379,7 @@ class Moderation(commands.Cog):
     @commands.slash_command(
         name='clearpins',
         description='Clears all pinned messages in the current channel.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _clearpins(self, inter: disnake.CommandInter) -> None:
@@ -399,7 +399,7 @@ class Moderation(commands.Cog):
     @commands.slash_command(
         name='banword',
         description='Add keywords to ban.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_role(LockRoles.admin)
     async def _banword(
@@ -453,7 +453,7 @@ class Moderation(commands.Cog):
     @commands.slash_command(
         name='clearbannedwords',
         description='Clears the list of banned keywords added by me.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_role(LockRoles.admin)
     async def _clearbannedwords(self, inter: disnake.CommandInter) -> None:
@@ -474,7 +474,7 @@ class Moderation(commands.Cog):
     @commands.slash_command(
         name='showbannedwords',
         description='Shows the list of banned keywords added by me.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_role(LockRoles.admin)
     async def _showbannedwords(self, inter: disnake.CommandInter) -> None:
@@ -502,7 +502,7 @@ class Moderation(commands.Cog):
     @commands.slash_command(
         name='resetnicks',
         description='Clear every nickname on the server.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_role(LockRoles.admin)
     async def _clearnicks(self, inter: disnake.CommandInter) -> None:

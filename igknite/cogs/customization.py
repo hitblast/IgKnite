@@ -49,7 +49,7 @@ class Customization(commands.Cog):
     @commands.slash_command(
         name='makerole',
         description='Create a new role.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_role(LockRoles.admin)
     async def _makerole(
@@ -71,7 +71,7 @@ class Customization(commands.Cog):
     @commands.slash_command(
         name='assignrole',
         description='Assign a role to a server member.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_role(LockRoles.admin)
     async def _assignrole(
@@ -94,7 +94,7 @@ class Customization(commands.Cog):
     @commands.slash_command(
         name='unassignrole',
         description='Removes a role from a server member.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_role(LockRoles.admin)
     async def _unassignrole(
@@ -117,7 +117,7 @@ class Customization(commands.Cog):
     @commands.slash_command(
         name='deleterole',
         description='Delete a role from the server.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_role(LockRoles.admin)
     async def _removerole(
@@ -135,7 +135,7 @@ class Customization(commands.Cog):
     @commands.slash_command(
         name='makeinvite',
         description='Create an invitation link to the server.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _makeinvite(
@@ -176,7 +176,7 @@ class Customization(commands.Cog):
     @commands.slash_command(
         name='nick',
         description='Change nickname of a member.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _nick(
@@ -194,7 +194,7 @@ class Customization(commands.Cog):
     @commands.slash_command(
         name='slowmode',
         description='Sets slowmode for the current channel.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _slowmode(
@@ -218,7 +218,7 @@ class Customization(commands.Cog):
     @commands.slash_command(
         name='makechannel',
         description='Create a new text channel.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_role(LockRoles.admin)
     async def _makechannel(
@@ -252,7 +252,7 @@ class Customization(commands.Cog):
     @commands.slash_command(
         name='makevoice',
         description='Create a new voice channel.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_role(LockRoles.admin)
     async def _makevc(
@@ -283,7 +283,7 @@ class Customization(commands.Cog):
     @commands.slash_command(
         name='makestage',
         description='Creates a new stage channel.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_role(LockRoles.admin)
     async def _makestage(
@@ -314,7 +314,7 @@ class Customization(commands.Cog):
     @commands.slash_command(
         name='makecategory',
         description='Create a new channel category.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_role(LockRoles.admin)
     async def _makecategory(
@@ -329,7 +329,7 @@ class Customization(commands.Cog):
     @commands.slash_command(
         name='deletechannel',
         description='Delete a channel from the server.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_role(LockRoles.admin)
     async def _removechannel(
@@ -355,7 +355,7 @@ class Customization(commands.Cog):
     @commands.slash_command(
         name='reset',
         description='Resets the current channel.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_role(LockRoles.admin)
     async def _reset(self, inter: disnake.CommandInter) -> None:
@@ -374,7 +374,7 @@ class Customization(commands.Cog):
     @commands.slash_command(
         name='afkvc',
         description='Configures the inactive (AFK) channel for the server.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_role(LockRoles.admin)
     async def _afkvc(

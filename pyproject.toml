@@ -1,6 +1,6 @@
 [project]
 name = "igknite"
-version = "2025.2.28"
+version = "2025.3.3"
 description = "Unified, swiss-grade moderation & music bot for Discord"
 readme = "README.md"
 requires-python = ">=3.13"

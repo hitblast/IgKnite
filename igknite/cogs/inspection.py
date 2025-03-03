@@ -88,7 +88,7 @@ class Inspection(commands.Cog):
     @commands.slash_command(
         name='guildinfo',
         description='Shows all important information about the server.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _guildinfo(self, inter: disnake.CommandInter) -> None:
@@ -145,7 +145,7 @@ class Inspection(commands.Cog):
     @commands.slash_command(
         name='userinfo',
         description='Shows all important information on a user.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _userinfo(
@@ -160,7 +160,7 @@ class Inspection(commands.Cog):
 
     # userinfo (user)
     @commands.user_command(
-        name='Show User Information', contexts=disnake.InteractionContextTypes.guild
+        name='Show User Information', contexts=disnake.InteractionContextTypes(guild=True)
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _userinfo_user(
@@ -170,7 +170,7 @@ class Inspection(commands.Cog):
 
     # userinfo (message)
     @commands.message_command(
-        name='Show Author Information', contexts=disnake.InteractionContextTypes.guild
+        name='Show Author Information', contexts=disnake.InteractionContextTypes(guild=True)
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _userinfo_message(
@@ -182,7 +182,7 @@ class Inspection(commands.Cog):
     @commands.slash_command(
         name='roleinfo',
         description='Shows all important information related to a specific role.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _roleinfo(
@@ -211,7 +211,7 @@ class Inspection(commands.Cog):
     @commands.slash_command(
         name='invites',
         description='Displays active server invites.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _invites(
@@ -274,7 +274,7 @@ class Inspection(commands.Cog):
         name='revokeinvites',
         description='Revokes invites. '
         + 'By default this removes all invites but you can choose a server member.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _revokeinvites(
@@ -306,7 +306,7 @@ class Inspection(commands.Cog):
     @commands.slash_command(
         name='audit',
         description='Views the latest entries of the audit log in detail.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _audit(

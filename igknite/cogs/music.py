@@ -656,7 +656,7 @@ class Music(commands.Cog):
         name='join',
         description="Joins the voice channel you're in. "
         + 'You can also specify which channel to join.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     async def _join(
         self,
@@ -678,7 +678,7 @@ class Music(commands.Cog):
     @commands.slash_command(
         name='leave',
         description='Clears the queue and leaves the voice channel.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     async def _leave(self, inter: disnake.CommandInter) -> None:
         if not await self._ensure_voice_safety(inter, skip_play=True):
@@ -692,7 +692,7 @@ class Music(commands.Cog):
     @commands.slash_command(
         name='volume',
         description='Sets the volume of the current track.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     async def _volume(
         self,
@@ -718,7 +718,7 @@ class Music(commands.Cog):
     @commands.slash_command(
         name='togglelock',
         description='Locks / unlocks the current playback.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _lock(self, inter: disnake.CommandInter) -> None:
@@ -736,7 +736,7 @@ class Music(commands.Cog):
     @commands.slash_command(
         name='now',
         description='Displays an interactive control view for the current song.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     async def _now(self, inter: disnake.CommandInter) -> None:
         if inter.voice_state.is_playing:
@@ -749,7 +749,7 @@ class Music(commands.Cog):
     @commands.slash_command(
         name='pause',
         description='Pauses the currently playing song.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     async def _pause(self, inter: disnake.CommandInter) -> None:
         if not await self._ensure_voice_safety(inter):
@@ -762,7 +762,7 @@ class Music(commands.Cog):
     @commands.slash_command(
         name='resume',
         description='Resumes the currently paused song.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     async def _resume(self, inter: disnake.CommandInter) -> None:
         if not await self._ensure_voice_safety(inter, skip_play=True):
@@ -778,7 +778,7 @@ class Music(commands.Cog):
     @commands.slash_command(
         name='stop',
         description='Stops playing song and clears the queue.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     async def _stop(self, inter: disnake.CommandInter) -> None:
         if not await self._ensure_voice_safety(inter):
@@ -796,7 +796,7 @@ class Music(commands.Cog):
     @commands.slash_command(
         name='skip',
         description='Vote to skip a song. The requester can automatically skip.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     async def _skip(self, inter: disnake.CommandInter) -> None:
         if not await self._ensure_voice_safety(inter):
@@ -834,7 +834,7 @@ class Music(commands.Cog):
     @commands.slash_command(
         name='queue',
         description="Shows the player's queue.",
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     async def _queue(self, inter: disnake.CommandInter) -> None:
         if not await self._ensure_voice_safety(inter, skip_play=True, ignore_lock=True):
@@ -886,7 +886,7 @@ class Music(commands.Cog):
     @commands.slash_command(
         name='rmqueue',
         description='Removes a song from the queue at a given index.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     async def _rmqueue(
         self,
@@ -908,7 +908,7 @@ class Music(commands.Cog):
     @commands.slash_command(
         name='shuffle',
         description='Shuffles the current queue.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     async def _shuffle(self, inter: disnake.CommandInter) -> None:
         if not await self._ensure_voice_safety(inter, skip_play=True, ignore_lock=True):
@@ -923,7 +923,7 @@ class Music(commands.Cog):
     @commands.slash_command(
         name='loop',
         description='Toggles loop for the current song.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     async def _loop(self, inter: disnake.CommandInter) -> None:
         if not await self._ensure_voice_safety(inter, skip_play=True):
@@ -976,7 +976,7 @@ class Music(commands.Cog):
     @commands.slash_command(
         name='play',
         description='Enqueues playable stuff (basically sings you songs).',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     async def _play(
         self,
@@ -1043,7 +1043,7 @@ class Music(commands.Cog):
 
     # play (message)
     @commands.message_command(
-        name='Search & Play', contexts=disnake.InteractionContextTypes.guild
+        name='Search & Play', contexts=disnake.InteractionContextTypes(guild=True)
     )
     async def _play_message(
         self, inter: disnake.CommandInter, message: disnake.Message
@@ -1083,7 +1083,7 @@ class Music(commands.Cog):
     @commands.slash_command(
         name='playrich',
         description="Tries to enqueue a song from one's Spotify rich presence.",
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     async def _playrich(
         self,
@@ -1097,7 +1097,7 @@ class Music(commands.Cog):
 
     # playrich (user)
     @commands.user_command(
-        name='Rich Play', contexts=disnake.InteractionContextTypes.guild
+        name='Rich Play', contexts=disnake.InteractionContextTypes(guild=True)
     )
     async def _playrich_user(
         self, inter: disnake.CommandInter, member: disnake.Member

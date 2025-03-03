@@ -32,7 +32,6 @@ async def _ping_backend(inter: disnake.CommandInter) -> core.TypicalEmbed:
         )
         .add_field(name='API Latency', value=f'{api_latency}ms', inline=False)
         .add_field(name='Uptime', value=f'{h}h {m}m {s}s')
-        .add_field(name='Patch Version', value=core.BotData.version, inline=False)
     )
 
     return embed
@@ -97,7 +96,7 @@ class General(commands.Cog):
     @commands.slash_command(
         name='avatar',
         description='Displays the avatar of a server member.',
-        contexts=disnake.InteractionContextTypes.guild,
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     async def _avatar(
         self,
@@ -111,7 +110,7 @@ class General(commands.Cog):
 
     # avatar (user)
     @commands.user_command(
-        name='Show Avatar', contexts=disnake.InteractionContextTypes.guild
+        name='Show Avatar', contexts=disnake.InteractionContextTypes(guild=True),
     )
     async def _avatar_user(
         self, inter: disnake.CommandInter, member: disnake.Member
