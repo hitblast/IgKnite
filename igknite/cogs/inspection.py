@@ -160,7 +160,8 @@ class Inspection(commands.Cog):
 
     # userinfo (user)
     @commands.user_command(
-        name='Show User Information', contexts=disnake.InteractionContextTypes(guild=True)
+        name='Show User Information',
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _userinfo_user(
@@ -170,7 +171,8 @@ class Inspection(commands.Cog):
 
     # userinfo (message)
     @commands.message_command(
-        name='Show Author Information', contexts=disnake.InteractionContextTypes(guild=True)
+        name='Show Author Information',
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     @commands.has_any_role(LockRoles.mod, LockRoles.admin)
     async def _userinfo_message(

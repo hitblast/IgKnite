@@ -62,9 +62,7 @@ class IgKnite(commands.AutoShardedBot):
         print(f'\nConnected to Discord as: {self.user}')
 
     async def on_ready(self) -> None:
-        print(
-            f'Server count: {len(self.guilds)} | Shard count: {self.shard_count}'
-        )
+        print(f'Server count: {len(self.guilds)} | Shard count: {self.shard_count}')
         await self._update_presence()
 
     async def on_guild_join(self, _: disnake.Guild) -> None:

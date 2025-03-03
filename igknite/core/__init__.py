@@ -7,6 +7,7 @@ from . import datacls as datacls
 from .bot import *  # noqa: F403
 from .ui import *  # noqa: F403
 
+
 # Set bot metadata.
 @dataclass(frozen=True)
 class BotData:

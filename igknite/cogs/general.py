@@ -110,7 +110,8 @@ class General(commands.Cog):
 
     # avatar (user)
     @commands.user_command(
-        name='Show Avatar', contexts=disnake.InteractionContextTypes(guild=True),
+        name='Show Avatar',
+        contexts=disnake.InteractionContextTypes(guild=True),
     )
     async def _avatar_user(
         self, inter: disnake.CommandInter, member: disnake.Member
