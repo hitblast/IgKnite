@@ -18,4 +18,4 @@ RUN uv sync
 ENV PYTHONUNBUFFERED 1
 
 # Run.
-CMD [ "uv", "run", "igknite", "run" ]
+ENTRYPOINT [ "uv", "run", "igknite", "run" ]
