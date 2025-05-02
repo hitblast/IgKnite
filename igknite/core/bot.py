@@ -54,7 +54,7 @@ class IgKnite(commands.AutoShardedBot):
             status=disnake.Status.dnd,
             activity=disnake.Activity(
                 type=disnake.ActivityType.listening,
-                name=f'/play & more',
+                name='/play & more',
             ),
         )
 
