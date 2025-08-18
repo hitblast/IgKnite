@@ -1,5 +1,4 @@
 # Imports.
-import logging
 
 from decouple import config, UndefinedValueError
 from disnake.message import Message
