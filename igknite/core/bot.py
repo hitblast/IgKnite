@@ -22,7 +22,7 @@ class IgKnite(commands.AutoShardedBot):
         **kwargs,
     ) -> None:
         super().__init__(
-            command_prefix=commands.when_mentioned_or('.igkn.'),
+            command_prefix=commands.when_mentioned_or('igk.'),
             command_sync_flags=commands.CommandSyncFlags(
                 sync_commands=True,
                 allow_command_deletion=True,
