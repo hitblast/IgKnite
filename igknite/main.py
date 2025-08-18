@@ -13,6 +13,12 @@ def cli() -> None:
 
 @cli.command()
 def run() -> None:
+    if keychain.disabled:
+        print(
+            'One or more secrets are undefined. Consider filling in the .env first (read README.md for more info).'
+        )
+        return
+
     bot_instance = IgKnite()
     bot_instance.run(keychain.discord_token)
 

@@ -56,12 +56,12 @@ class Customization(commands.Cog):
         self,
         inter: disnake.CommandInter,
         name: str = Param(description='Give a name for the new role.'),
-        color: str = Param(
+        hex: str = Param(
             description='Give a color for the new role in Hex.',
             default='#000000',
         ),
     ) -> None:
-        color = get_color(color)
+        color = get_color(hex)
         embed = core.TypicalEmbed(description=f'Role `{name}` has been created.')
 
         await inter.guild.create_role(name=name, color=color)
@@ -243,9 +243,10 @@ class Customization(commands.Cog):
             choices=__slowmode_choices__,
         ),
     ) -> None:
-        channel = await inter.guild.create_text_channel(
-            name=name, topic=topic, category=category, slowmode_delay=slowmode
-        )
+        if inter.guild:
+            channel = await inter.guild.create_text_channel(
+                name=name, topic=topic, category=category, slowmode_delay=slowmode
+            )
         await inter.send(f'Channel {channel.mention} has been created!')
 
     # makevc
