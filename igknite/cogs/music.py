@@ -65,7 +65,10 @@ class YTDLSource(disnake.PCMVolumeTransformer):
     }
 
     ytdl = yt_dlp.YoutubeDL(YTDL_OPTIONS)
-    ytdl.cache.remove()
+    try:
+        ytdl.cache.remove()
+    except Exception:
+        pass
 
     def __init__(
         self,
@@ -85,14 +88,22 @@ class YTDLSource(disnake.PCMVolumeTransformer):
         self.uploader_url = data.get('uploader_url')
 
         date = data.get('upload_date')
-        self.upload_date = date[6:8] + '.' + date[4:6] + '.' + date[0:4]
+        if date:
+            self.upload_date = date[6:8] + '.' + date[4:6] + '.' + date[0:4]
+        else:
+            self.upload_date = 'Unknown'
 
         self.title = data.get('title')
         self.thumbnail = data.get('thumbnail')
         self.description = data.get('description')
-        self.duration = self.parse_duration(int(data.get('duration')))
+
+        dur = data.get('duration')
+        self.duration = self.parse_duration(int(dur)) if dur is not None else None
+
         self.tags = data.get('tags')
-        self.url = data.get('webpage_url')
+        self.url = (
+            data.get('webpage_url') or data.get('original_url') or data.get('url')
+        )
         self.views = data.get('view_count')
         self.likes = data.get('like_count')
         self.dislikes = data.get('dislike_count')
@@ -111,46 +122,42 @@ class YTDLSource(disnake.PCMVolumeTransformer):
     ) -> Self:
         loop = loop or asyncio.get_event_loop()
 
-        partial = functools.partial(
-            cls.ytdl.extract_info, search, download=False, process=False
-        )
+        # First extraction with processing enabled to get streamable info
+        partial = functools.partial(cls.ytdl.extract_info, search, download=False)
         data = await loop.run_in_executor(None, partial)
 
         if data is None:
             raise YTDLError(f"Anything matching **{search}** couldn't be found.")
 
-        if 'entries' not in data:
-            process_info = data
-
-        else:
-            process_info = None
-            for entry in data['entries']:
-                if entry:
-                    process_info = entry
-                    break
-
+        # If search/playlist, pick the first valid entry
+        if 'entries' in data:
+            entries = data.get('entries') or []
+            process_info = next((e for e in entries if e), None)
             if process_info is None:
                 raise YTDLError(f"Anything matching **{search}** couldn't be found.")
-
-        webpage_url = process_info['webpage_url']
-        partial = functools.partial(cls.ytdl.extract_info, webpage_url, download=False)
-        processed_info = await loop.run_in_executor(None, partial)
-
-        if processed_info is None:
-            raise YTDLError(f"Couldn't fetch **{webpage_url}**")
-
-        if 'entries' not in processed_info:
-            info = processed_info
         else:
-            info = None
+            process_info = data
 
-            while info is None:
-                try:
-                    info = processed_info['entries'].pop(0)
-                except IndexError:
-                    raise YTDLError(
-                        f"Any matches for {webpage_url} couldn't be retrieved."
-                    )
+        info = process_info
+
+        # If we still don't have a direct url, fetch the webpage_url and process again
+        if not info.get('url'):
+            webpage_url = info.get('webpage_url') or info.get('url') or search
+            partial = functools.partial(
+                cls.ytdl.extract_info, webpage_url, download=False
+            )
+            processed_info = await loop.run_in_executor(None, partial)
+            if processed_info is None:
+                raise YTDLError(f"Couldn't fetch **{webpage_url}**")
+            if 'entries' in processed_info:
+                entries = processed_info.get('entries') or []
+                processed_info = next((e for e in entries if e and e.get('url')), None)
+                if processed_info is None:
+                    raise YTDLError(f"Any matches for {search} couldn't be retrieved.")
+            info = processed_info
+
+        if not info.get('url'):
+            raise YTDLError("A playable stream URL couldn't be extracted.")
 
         return cls(
             inter,
@@ -174,7 +181,7 @@ class YTDLSource(disnake.PCMVolumeTransformer):
         if seconds > 0:
             durations.append(f'{seconds}s')
 
-        return ' '.join(durations)
+        return ' '.join(durations) if durations else 'Live'
 
 
 # YTDLSource class with equalized playback.
@@ -636,7 +643,8 @@ class Music(commands.Cog):
     # which have been modified below.
     async def _app_command_invoke_logic(self, inter: disnake.CommandInter) -> None:
         inter.voice_state = self._init_voice_state(inter)
-        return await inter.response.defer()
+        await inter.response.defer()
+        return
 
     async def cog_before_slash_command_invoke(
         self, inter: disnake.CommandInter
