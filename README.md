@@ -3,9 +3,13 @@
 # IgKnite
 Unified, swiss-grade moderation & music bot for Discord
 
+> [!WARNING]
+> This repository has gone in maintenance mode.
+
 > [!NOTE]
-> The repository has been migrated and recreated from the original "IgKniteDev" organization. Support the development
-> by giving a star! :D
+> IgKnite was previously in the "IgKniteDev" organization, and during migration, all 70+ stars were lost. If you like
+> this project, consider starring!
+
 
 ## Table of Contents
 
