@@ -7,7 +7,7 @@ requires-python = ">=3.13"
 packages = [ { include = "igknite" } ]
 dependencies = [
     "async-timeout>=5.0.1",
-    "click>=8.1.8",
+    "click>=8.3.2",
     "disnake[voice]>=2.12.0",
     "python-decouple>=3.8",
     "spotipy>=2.26.0",
