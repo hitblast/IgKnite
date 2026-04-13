@@ -5,7 +5,7 @@ Unified, swiss-grade moderation & music bot for Discord
 
 > [!WARNING]
 > As I've been focusing on more important projects, I can't seem to consistently work on this repository as much as before.
-> Thus, I've decided to halt the development of this project (for now, who knows, IgKnite might return :3).
+> Thus, I've decided to halt the development of this project (for now, who knows, IgKnite might return).
 
 > [!NOTE]
 > IgKnite was previously in the "IgKniteDev" organization, and during migration, all 70+ stars were lost. If you like
