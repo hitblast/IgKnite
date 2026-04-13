@@ -11,7 +11,7 @@ dependencies = [
     "disnake[voice]>=2.12.0",
     "python-decouple>=3.8",
     "spotipy>=2.26.0",
-    "yt-dlp>=2025.2.19",
+    "yt-dlp>=2026.3.17",
 ]
 
 [project.scripts]
